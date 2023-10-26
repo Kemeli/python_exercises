@@ -1,6 +1,6 @@
 def NULL_not_found(object: any) -> int:
 	tp = type(object)
-	if (tp == type(None)): #it would be comparing to anything
+	if (tp == type(None)): #it would be comparing to nothing
 		print("Nothing: None", tp)
 	elif (tp == float):
 		print("Cheese: nan", tp)
