@@ -8,6 +8,7 @@ def punctuation(string):
 			punctuation_list.append(char)
 	return punctuation_list
 
+
 def get_values(string):
 
 	print("The text contains", len(string), "characters:")
@@ -22,16 +23,20 @@ def get_values(string):
 
 
 def main():
-	arg = sys.argv[1:]
 
-	if len(arg) > 1:
+	arg = sys.argv
+	if len(arg) > 2:
 		print("AssertionError: You should pass only one argument, use quotes.")
 		return
-	if len(arg) == 0:
-		string = input("What is the text to count?\n")
-	else:
-		string = ' '.join(arg)
-	get_values(string)
+
+	string = arg[1:]
+	try:
+		while (len(string) == 0):
+			string = input("What is the text to count?\n")
+		get_values(string)
+	except KeyboardInterrupt:
+		print("")
+		return
 
 if "name == __main__":
 	main()
