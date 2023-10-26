@@ -10,7 +10,6 @@ def punctuation(string):
 
 
 def get_values(string):
-
 	print("The text contains", len(string), "characters:")
 	print(sum(1 for c in string if c.isupper()), "upper letters")
 	print(sum(1 for c in string if c.islower()), "lower letters")
@@ -23,7 +22,6 @@ def get_values(string):
 
 
 def main():
-
 	arg = sys.argv
 	if len(arg) > 2:
 		print("AssertionError: You should pass only one argument, use quotes.")
