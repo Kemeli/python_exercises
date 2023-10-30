@@ -1,10 +1,3 @@
-def no_punctuation(string):
-	punctuation = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
-	for char in string:
-		if char in punctuation:
-			return False
-	return True
-
 def get_morse_dict():
 	morse_code_dict = {
 		'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.',
@@ -26,7 +19,6 @@ def sos(string):
 	for char in string:
 		if char.upper() not in morse_code_dict:
 			return ("String argument should only contain alphanumeric characters")
-	for char in string:
-		if char.upper() in morse_code_dict:
+		else:
 			morse_code += morse_code_dict[char.upper()]
 	return(morse_code)
