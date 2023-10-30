@@ -21,11 +21,12 @@ def get_morse_dict():
 
 
 def sos(string):
-		morse_code = ""
-		morse_code_dict = get_morse_dict()
-		if no_punctuation(string) == True:
-			for char in string:
-				if char.upper() in morse_code_dict:
-					morse_code += morse_code_dict[char.upper()]
-			return(morse_code)
-		return ("String argument should only contain alphanumeric characters")
+	morse_code = ""
+	morse_code_dict = get_morse_dict()
+	for char in string:
+		if char.upper() not in morse_code_dict:
+			return ("String argument should only contain alphanumeric characters")
+	for char in string:
+		if char.upper() in morse_code_dict:
+			morse_code += morse_code_dict[char.upper()]
+	return(morse_code)
