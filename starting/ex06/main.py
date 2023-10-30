@@ -1,13 +1,11 @@
 import sys
 from filterstring import filter_string
 
-
 def main():
 	args = sys.argv[1:]
 	if len(args) != 2:
 		print ("AssertionError: two arguments are required")
 		return
-
 	try:
 		S = str(args[0])
 		N = int(args[1])
