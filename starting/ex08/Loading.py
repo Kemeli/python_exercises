@@ -6,7 +6,7 @@ def print_bar(i, total):
 	length_bar = 50
 	filled_bar = int(length_bar * i // total)
 	bar = '█' * filled_bar + ' ' * (length_bar - filled_bar)
-	print(f'\r{percent:.0f}%|{bar}| {i}/{total}', end='\r')
+	print(f'{percent:.0f}%|{bar}| {i}/{total}', end='\r')
 
 
 def ft_tqdm(lst: range) -> None:
