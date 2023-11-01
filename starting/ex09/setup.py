@@ -7,5 +7,6 @@ setup(
 	author="eagle",
 	author_email="eagle@42.fr",
 	url="https://github.com/eagle/ft_package",
-	packages=find_packages()
+	packages=find_packages(),
+	license="MIT"
 )
