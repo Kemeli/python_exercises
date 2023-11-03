@@ -11,14 +11,17 @@ var = sys.argv[1:] #gets argv from second argument on
 size = len(var)
 
 if size != 0:
-	if size > 1:
-		print("AssertionError: more than one argument is provided")
-	else:
+	try:
+		if size > 1:
+			raise AssertionError("more than one argument is provided")
 		try:
 			num = int(var[0])
-			if int(num) % 2 == 0:
-				print ("I'm Even.")
-			if int(num) % 2 != 0:
-				print ("I'm Odd.")
-		except ValueError:
-			print("AssertionError: argument is not an integer")
+		except:
+			raise AssertionError("argument is not an integer")
+	except Exception as e:
+		print(f"{type(e).__name__}: {e}")
+	else:
+		if int(num) % 2 == 0:
+			print ("I'm Even.")
+		else:
+			print ("I'm Odd.")
