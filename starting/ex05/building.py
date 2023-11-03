@@ -23,18 +23,18 @@ def get_values(string):
 
 def main():
 	arg = sys.argv
-	if len(arg) > 2:
-		print("AssertionError: You should pass only one argument, use quotes.")
-		return
-
 	string = arg[1:]
 	try:
-		while (len(string) == 0):
-			string = input("What is the text to count?\n")
-		get_values(string)
-	except KeyboardInterrupt:
-		print("")
-		return
+		if len(arg) > 2:
+			raise AssertionError ("You must pass only one argument, use quotes.")
+		try:
+			while (len(string) == 0):
+				string = input("What is the text to count?\n")
+			get_values(string)
+		except KeyboardInterrupt:
+			print ('')
+	except Exception as e:
+		print(f'{type(e).__name__}', e)
 
 
 if "name == __main__":
