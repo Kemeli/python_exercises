@@ -10,8 +10,12 @@ def print_bar(i, total):
 
 
 def ft_tqdm(lst: range) -> None:
-	total = len(lst)
-	for i, item in enumerate(lst):
-		yield item
-		print_bar(i + 1, total)
+	try:
+		assert type(lst) == range, "argument type must be 'range'"
+		total = len(lst)
+		for i, item in enumerate(lst):
+			yield item
+			print_bar(i + 1, total)
+	except Exception as e:
+		print(f'{type(e).__name__} :', e)
 	print()
