@@ -1,6 +1,6 @@
 from PIL import Image
 
-def zoom_image(image, new_height, new_width):
+def zoom_image(image, height, width):
 	"""
 	receives an array representing an image, creates the zoomed image and returns
 	the zoomed image array
@@ -15,10 +15,15 @@ def zoom_image(image, new_height, new_width):
 	Transforms the array to a zoomed image, saves it and returns the new image
 	in array format
 	"""
-	x_start = (image.shape[1] - new_width) // 2
-	x_end = x_start + new_width
-	y_start = (image.shape[0] - new_height) // 2
-	y_end = y_start + new_height
+
+	try:
+		assert height > 0 and width > 0, 'new sizes must be bigger than zero'
+		x_start = (image.shape[1] - width) // 2
+		x_end = x_start + width
+		y_start = (image.shape[0] - height) // 2
+		y_end = y_start + height
+	except Exception as e:
+		print(f'{type(e).__name__}: {str(e)}')
 
 	zoomed_img = image[y_start:y_end, x_start:x_end]
 	zoomed_h = zoomed_img.shape[0]
