@@ -3,17 +3,16 @@ import numpy as np
 
 def rotate(image):
 	"""
-	rotates an array image, displays the image and returns the rotaed array
+	rotates an array image, displays the image and returns the rotated array
 
 	Parameter:
 	The array image to be rotated
 
-	Creates an array of zeros, with the same size as the original;
+	Creates a 3d array of zeros, with the same size as the original;
 	Iterates through every pixel in the original array and copies them to the
 	new array in different positions, in order to get the rotation effect;
 	Creates and saves the rotated image;
-	returns the rotated array
-
+	Returns the rotated array.
 	"""
 	try:
 		height, width, channels = image.shape
