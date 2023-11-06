@@ -7,7 +7,7 @@ def give_bmi(height: list[int | float], weight: list[int | float]) -> list[int |
 	try:
 		assert np_height.size == np_weight.size, \
 			'height and weight lists should have the same length'
-		np_squared = np.square(np.array(np_height))
+		np_squared = np.square(np_height)
 		bmi = np.divide(np_weight, np_squared)
 	except Exception as e:
 		print(f"Error: {str(e)}")
