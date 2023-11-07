@@ -1,49 +1,61 @@
 import matplotlib.pyplot as plt
-import numpy as np
 
-def get_population(string):
+def population_range(string):
 	n = float(string[:-1])
-	m20 = 20000000
 	m70 = 70000000
 	if str(string).endswith('M')  and n * 1e6 <= m70:
 		return n * 1e6
+
 
 def get_years(str):
 	if int(str) < 2051:
 		return int(str)
 
 
-def get_graph(data):
-	try:
-		my_campus = data[data['country'] == 'Brazil'].iloc[:, 1:]
-		years = my_campus.columns.astype(int)
-		population = my_campus.values.flatten()
-		other_campus = data[data['country'] == 'Argentina'].iloc[:, 1:]
-		other_population = other_campus.values.flatten()
+def get_population(lst):
+	new_lst = [population_range(value) for value in lst]
+	return new_lst
 
-	except Exception as e:
-		print(f'{type(e).__name__}: {str(e)}')
-		return
 
-	population = [get_population(value) for value in population]
-	other_population = [get_population(value) for value in other_population]
-	years = [get_years(value) for value in years]
-	um = [float(valor) for valor in population if valor is not None]
-	dois = [float(valor) for valor in other_population if valor is not None]
+def to_float(lst):
+	new_lst = [float(valor) for valor in lst if valor is not None]
+	return new_lst
 
+
+def plot(years, campus_pop, other_pop, campus, other):
 	try:
 		plt.figure(figsize=(6, 5))
-		plt.plot(years, population)
-		plt.plot(years, other_population)
+		plt.plot(years, campus_pop, label=campus)
+		plt.plot(years, other_pop, label=other)
+	except Exception as e:
+		print(f'{type(e).__name__}: {str(e)}')
+
+
+def	get_axis_ticks(years, other_pop, campus_pop):
+	max_pop = (max(max(to_float(campus_pop)), max(to_float(other_pop))))
+	yticks = [i * 2e7 for i in range(int(max_pop / 2e7) + 1)]
+	plt.yticks(yticks, ["{:,.0f}M".format(pop / 1e6) for pop in yticks])
+	plt.xticks(to_float(years)[::40])
+	plt.xlabel("Year")
+	plt.ylabel("Population")
+
+
+def get_graph(data, campus, other):
+	try:
+		my_campus = data[data['country'] == campus].iloc[:, 1:]
+		campus_pop = my_campus.values.flatten()
+		other_campus = data[data['country'] == other].iloc[:, 1:]
+		other_pop = other_campus.values.flatten()
+		years = my_campus.columns.astype(int)
 	except Exception as e:
 		print(f'{type(e).__name__}: {str(e)}')
 		return
 
-	max_pop = (max(max(um), max(dois)))
-	yticks = [i * 2e7 for i in range(int(max_pop / 2e7) + 1)]
-	plt.yticks(yticks, ["{:,.0f}M".format(pop / 1e6) for pop in yticks])
-	plt.xticks(range(1800, 2051, 40), range(1800, 2051, 40))
+	campus_pop = get_population(campus_pop)
+	other_pop = get_population(other_pop)
+	years = [get_years(value) for value in years]
 
-	plt.tight_layout()
+	plot(years, campus_pop, other_pop, campus, other)
+	get_axis_ticks(years, other_pop, campus_pop)
+	plt.legend()
 	plt.savefig("graph.png")
-
