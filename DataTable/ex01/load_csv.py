@@ -7,4 +7,3 @@ def load(path: str):
 		return df
 	except Exception as e:
 		print(f'{type(e).__name__}: {str(e)}')
-
