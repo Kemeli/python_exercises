@@ -11,10 +11,9 @@ def get_graph(df):
 
 	plt.figure(figsize=(10, 6))
 	plt.plot(years, life_expectancy)
-	plt.title('Brazil Life Expectancy projection')
+	plt.title('Brazil Life Expectancy projections')
 	plt.xlabel('Year')
 	plt.xticks(years[::40])
 	plt.ylabel('Life Expectancy')
-	plt.legend()
 	plt.tight_layout()
 	plt.savefig("graph.png")
