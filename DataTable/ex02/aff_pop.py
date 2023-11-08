@@ -42,11 +42,11 @@ def	get_axis_ticks(years, other_pop, campus_pop):
 
 def get_graph(data, campus, other):
 	try:
-		my_campus = data[data['country'] == campus].iloc[:, 1:]
-		campus_pop = my_campus.values.flatten()
-		other_campus = data[data['country'] == other].iloc[:, 1:]
-		other_pop = other_campus.values.flatten()
-		years = my_campus.columns.astype(int)
+		my_campus = data[data['country'] == campus]
+		campus_pop = my_campus.values[0][1:]
+		other_campus = data[data['country'] == other]
+		other_pop = other_campus.values[0][1:]
+		years = my_campus.columns[1:]
 	except Exception as e:
 		print(f'{type(e).__name__}: {str(e)}')
 		return
