@@ -1,9 +1,9 @@
 import matplotlib.pyplot as plt
 
-def population_range(string):
-	n = float(string[:-1])
-	m70 = 70000000
-	if str(string).endswith('M')  and n * 1e6 <= m70:
+def population_range(value):
+	n = float(value[:-1])
+	m70 = 7e7
+	if str(value).endswith('M')  and n * 1e6 <= m70:
 		return n * 1e6
 
 
@@ -33,7 +33,9 @@ def plot(years, campus_pop, other_pop, campus, other):
 
 def	get_axis_ticks(years, other_pop, campus_pop):
 	max_pop = (max(max(to_float(campus_pop)), max(to_float(other_pop))))
-	yticks = [i * 2e7 for i in range(int(max_pop / 2e7) + 1)]
+	lst_range = range(int(max_pop / 2e7) + 1)
+	yticks = [i * 2e7 for i in lst_range]
+
 	plt.yticks(yticks, ["{:,.0f}M".format(pop / 1e6) for pop in yticks])
 	plt.xticks(to_float(years)[::40])
 	plt.xlabel("Year")
