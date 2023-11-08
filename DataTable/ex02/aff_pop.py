@@ -31,12 +31,8 @@ def plot(years, campus_pop, other_pop, campus, other):
 		print(f'{type(e).__name__}: {str(e)}')
 
 
-def	get_axis_ticks(years, other_pop, campus_pop):
-	max_pop = (max(max(to_float(campus_pop)), max(to_float(other_pop))))
-	lst_range = range(int(max_pop / 2e7) + 1)
-	yticks = [i * 2e7 for i in lst_range]
-
-	plt.yticks(yticks, ["{:,.0f}M".format(pop / 1e6) for pop in yticks])
+def	get_axis_ticks(years):
+	plt.yticks(ticks=[2e7, 4e7, 6e7], labels=['20M', '40M', '60M'])
 	plt.xticks(to_float(years)[::40])
 	plt.xlabel("Year")
 	plt.ylabel("Population")
@@ -58,6 +54,6 @@ def get_graph(data, campus, other):
 	years = [get_years(value) for value in years]
 
 	plot(years, campus_pop, other_pop, campus, other)
-	get_axis_ticks(years, other_pop, campus_pop)
+	get_axis_ticks(years)
 	plt.legend()
 	plt.savefig("graph.png")
