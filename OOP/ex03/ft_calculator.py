@@ -19,4 +19,4 @@ class calculator:
 			self.array = [i / object for i in self.array]
 			print(self.array)
 		except Exception as e:
-			print (f'{type(e).__name__} : {str(e)}')
+			print (f'{type(e).__name__} : {(e)}')
