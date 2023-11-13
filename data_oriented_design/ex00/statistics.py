@@ -1,4 +1,11 @@
 def ft_statistics(*args: any, **kwargs: any) -> None:
+	"""Prints the mean, medium, quartile, variance and standard deviation, if
+	passed as kwargs.
+
+	Parameters:
+	A tuple with numerical values;
+	A set of key values, with the expected statistical measures."""
+
 	if len(args) == 0:
 		for i in kwargs:
 			print ("ERROR")
